@@ -1,43 +1,78 @@
-import { useState } from 'react'
-import Terminal from './components/Terminal'
-import Dashboard from './components/Dashboard'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from './components/ui/tabs'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Toaster } from "sonner";
+import Dashboard from "./components/Dashboard";
+import LandingPage from "./components/LandingPage";
+import { SVGGrid } from "./components/SVGGrid";
 
 function App() {
-  const [activeTab, setActiveTab] = useState('terminal')
-
   return (
-    <div className="h-screen w-screen bg-background p-4">
-      <div className="h-full flex flex-col">
-        <header className="mb-4">
-          <h1 className="text-3xl font-bold text-primary">Smart Terminal</h1>
-          <p className="text-sm text-muted-foreground">AI-powered terminal with resource monitoring</p>
-        </header>
-
-        <Tabs value={activeTab} onValueChange={setActiveTab} className="flex-1 flex flex-col">
-          <TabsList className="mb-4">
-            <TabsTrigger value="terminal">Terminal</TabsTrigger>
-            <TabsTrigger value="dashboard">Dashboard</TabsTrigger>
-          </TabsList>
-          
-          <TabsContent value="terminal" className="flex-1 mt-0">
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 h-full">
-              <div className="lg:col-span-2">
-                <Terminal />
-              </div>
-              <div className="hidden lg:block">
-                <Dashboard compact />
-              </div>
-            </div>
-          </TabsContent>
-          
-          <TabsContent value="dashboard" className="flex-1 mt-0">
-            <Dashboard />
-          </TabsContent>
-        </Tabs>
+    <Router>
+      <div className="bg-black text-green-400 font-mono min-h-screen relative">
+        <SVGGrid />
+        <div className="relative z-10">
+          <Routes>
+            <Route path="/" element={<LandingPage />} />
+            <Route path="/home" element={<LandingPage />} />
+            <Route path="/terminal" element={
+              <>
+                <div className="p-4 md:p-8">
+                  <header className="flex justify-between items-center mb-8">
+                    <h1 className="text-2xl md:text-4xl font-bold glitch" data-text="Smart Terminal">
+                      Smart Terminal
+                    </h1>
+                    <div className="text-xs md:text-sm">
+                      <p>STATUS: <span className="text-green-500">ONLINE</span></p>
+                      <p>UID: <span className="text-yellow-400">777-B47-32</span></p>
+                    </div>
+                  </header>
+                  <main>
+                    <Dashboard />
+                  </main>
+                </div>
+              </>
+            } />
+            <Route path="/dashboard" element={
+              <>
+                <div className="p-4 md:p-8">
+                  <header className="flex justify-between items-center mb-8">
+                    <h1 className="text-2xl md:text-4xl font-bold glitch" data-text="Smart Terminal">
+                      Smart Terminal
+                    </h1>
+                    <div className="text-xs md:text-sm">
+                      <p>STATUS: <span className="text-green-500">ONLINE</span></p>
+                      <p>UID: <span className="text-yellow-400">777-B47-32</span></p>
+                    </div>
+                  </header>
+                  <main>
+                    <Dashboard />
+                  </main>
+                </div>
+              </>
+            } />
+            <Route path="/history" element={
+              <>
+                <div className="p-4 md:p-8">
+                  <header className="flex justify-between items-center mb-8">
+                    <h1 className="text-2xl md:text-4xl font-bold glitch" data-text="Smart Terminal">
+                      Smart Terminal
+                    </h1>
+                    <div className="text-xs md:text-sm">
+                      <p>STATUS: <span className="text-green-500">ONLINE</span></p>
+                      <p>UID: <span className="text-yellow-400">777-B47-32</span></p>
+                    </div>
+                  </header>
+                  <main>
+                    <Dashboard />
+                  </main>
+                </div>
+              </>
+            } />
+          </Routes>
+        </div>
+        <Toaster theme="dark" position="bottom-right" />
       </div>
-    </div>
-  )
+    </Router>
+  );
 }
 
-export default App
+export default App;

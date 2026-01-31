@@ -39,7 +39,7 @@ export const api = {
     return response.json();
   },
   
-  getSystemResourcesStream: () => `${API_BASE_URL}/api/resources/system/stream`,
+  getResourcesStream: () => `${API_BASE_URL}/api/resources/system/stream`,
   
   // History
   getCommandHistory: async (params?: { limit?: number; search?: string }) => {
@@ -48,27 +48,45 @@ export const api = {
     return response.json();
   },
   
-  saveCommand: async (record: any) => {
+  saveCommand: async (command: any) => {
     const response = await fetch(`${API_BASE_URL}/api/history/commands`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(record),
+      body: JSON.stringify(command),
     });
     return response.json();
   },
   
+  getGitCommits: async (limit: number = 10, repoPath: string = ".") => {
+    const response = await fetch(`${API_BASE_URL}/api/history/git-commits?limit=${limit}&repo_path=${encodeURIComponent(repoPath)}`);
+    return response.json();
+  },
+  
+  getHistoryStatistics: async () => {
+    const response = await fetch(`${API_BASE_URL}/api/history/statistics`);
+    return response.json();
+  },
+  
+  exportHistory: async () => {
+    const response = await fetch(`${API_BASE_URL}/api/history/export`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+    });
+    return response.json();
+  },
+
   toggleFavorite: async (commandId: number) => {
     const response = await fetch(`${API_BASE_URL}/api/history/commands/${commandId}/favorite`, {
       method: 'PATCH',
     });
     return response.json();
   },
-  
+
   getSequences: async () => {
     const response = await fetch(`${API_BASE_URL}/api/history/sequences`);
     return response.json();
   },
-  
+
   saveSequence: async (sequence: any) => {
     const response = await fetch(`${API_BASE_URL}/api/history/sequences`, {
       method: 'POST',
@@ -78,3 +96,5 @@ export const api = {
     return response.json();
   },
 };
+
+export default api;
