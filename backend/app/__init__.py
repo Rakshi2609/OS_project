@@ -1,0 +1,1 @@
+"""Smart Terminal Backend Application"""
