@@ -1,53 +1,278 @@
-# Smart Ubuntu Terminal - Setup Instructions
+# Neural Terminal - Cyberpunk Setup Guide
 
-## Project Created! 🎉
+## 🚀 Welcome to the Neural Terminal Setup
 
-Your AI-powered smart terminal with resource monitoring is ready to use.
+> Transform your development environment into a cyberpunk neural interface!
 
-## 🚀 Quick Start
+## ⚡ Prerequisites
 
-### 1. Set up your Groq API Key
+Ensure you have the following installed:
 
 ```bash
-cd /home/appu/projects/ubuntu_terminal
+# Check Node.js version (required: 18+)
+node --version
+
+# Check Python version (required: 3.9+)
+python3 --version
+
+# Check Poetry (for Python dependency management)
+poetry --version
+
+# Install Poetry if not installed
+curl -sSL https://install.python-poetry.org | python3 -
+```
+
+## 🛠️ Quick Setup
+
+### 1. Clone & Navigate
+```bash
+git clone https://github.com/Rakshi2609/OS_project.git
+cd OS_project
+```
+
+### 2. Automated Setup
+```bash
+# Make scripts executable
+chmod +x *.sh
+
+# Run automated installation
+./install-deps.sh
+
+# Start development servers
+./start.sh
+```
+
+### 3. Manual Setup (Alternative)
+
+**Backend Setup:**
+```bash
+cd backend
+poetry install
+cd ..
+```
+
+**Frontend Setup:**
+```bash
+cd frontend
+npm install
+cd ..
+```
+
+## 🎯 Environment Configuration
+
+### 1. Set up Groq API Key (Optional)
+```bash
 cp .env.example .env
 ```
 
-Edit `.env` and add your Groq API key:
-```
-GROQ_API_KEY=your_actual_groq_api_key_here
+Edit `.env` file:
+```env
+GROQ_API_KEY=your_groq_api_key_here
+ENVIRONMENT=development
+DEBUG=true
 ```
 
-### 2. Start Backend (Terminal 1)
+### 2. Database Setup
+The application uses JSON file storage by default. For PostgreSQL:
 
+```bash
+# Install PostgreSQL (Ubuntu/Debian)
+sudo apt update && sudo apt install postgresql postgresql-contrib
+
+# Create database
+sudo -u postgres createdb neural_terminal
+```
+
+Update `.env`:
+```env
+DATABASE_URL=postgresql://user:password@localhost/neural_terminal
+```
+
+## 🚀 Running the Application
+
+### Development Mode
+```bash
+# Start both servers with auto-reload
+./start.sh
+```
+
+This launches:
+- **Backend**: http://localhost:8000
+- **Frontend**: http://localhost:5173
+- **API Docs**: http://localhost:8000/docs
+
+### Individual Server Commands
+
+**Backend Only:**
 ```bash
 cd backend
-pip install poetry
-poetry install
-poetry run uvicorn app.main:app --reload
+poetry run uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
 ```
 
-Backend will run at: http://localhost:8000
-
-### 3. Start Frontend (Terminal 2)
-
+**Frontend Only:**
 ```bash
 cd frontend
-npm install -g pnpm  # If you don't have pnpm
-pnpm install
-pnpm dev
+npm run dev
 ```
 
-Frontend will run at: http://localhost:5173
+## 🎨 Cyberpunk Features Enabled
 
-### 4. Open in Browser
+### ✨ Visual Elements
+- **Glitch text animations** with color splitting effects
+- **Neural network backgrounds** with animated nodes
+- **Matrix-style falling code** particles
+- **VHS scanline overlays** for retro aesthetics
+- **Neon glow effects** on interactive elements
+- **Custom scrollbars** with gradient styling
 
-Navigate to: http://localhost:5173
+### 🧠 AI Capabilities  
+- **Smart command suggestions** powered by Groq
+- **Contextual help system** based on current directory
+- **Command prediction** using machine learning
+- **Real-time assistance** for terminal operations
 
-## 📋 Features Implemented
+### 💻 Terminal Features
+- **Full PTY emulation** with xterm.js
+- **Non-blocking I/O** operations
+- **WebSocket real-time** communication  
+- **Command history** with JSON storage
+- **Favorites system** for frequent commands
+- **Git integration** with commit tracking
 
-### Phase 1: AI Command Suggestions ✅
-- **As-you-type autocomplete**: Real-time command suggestions via Groq API
+### 📊 Monitoring Dashboard
+- **Live system metrics** (CPU, Memory, Disk)
+- **Animated progress bars** with shimmer effects
+- **Resource usage graphs** with neural styling
+- **Real-time updates** via WebSocket
+
+## 🔧 Development Tools
+
+### Available Scripts
+```bash
+# Development servers
+./start.sh                    # Start both servers
+./install-deps.sh            # Install all dependencies  
+./test-ai.sh                 # Test AI functionality
+
+# Individual commands
+npm run dev                  # Frontend development
+poetry run uvicorn app.main:app --reload  # Backend development
+```
+
+### Code Quality Tools
+```bash
+# Frontend linting
+cd frontend && npm run lint
+
+# Backend formatting  
+cd backend && poetry run black .
+cd backend && poetry run isort .
+
+# Type checking
+cd frontend && npm run type-check
+cd backend && poetry run mypy .
+```
+
+## 🌐 Accessing the Application
+
+### 🏠 Landing Page (`/`)
+- Cyberpunk welcome interface
+- Animated neural networks
+- Terminal preview window
+- Navigation to main features
+
+### 💻 Terminal Interface (`/terminal`)
+- AI-powered command line
+- Real-time suggestions
+- Smart auto-completion
+- Command history sidebar
+
+### 📊 Dashboard (`/dashboard`)  
+- System resource monitoring
+- Live performance metrics
+- Neural-themed data visualization
+- Real-time updates
+
+### 📝 History (`/history`)
+- Command history browser
+- Search and filtering
+- Favorites management
+- Git commit integration
+
+## ⚠️ Troubleshooting
+
+### Common Issues
+
+**Port Already in Use:**
+```bash
+# Kill processes on ports 8000 and 5173
+sudo lsof -ti:8000 | xargs kill -9
+sudo lsof -ti:5173 | xargs kill -9
+```
+
+**Python Dependencies:**
+```bash
+# Reset Poetry environment
+cd backend
+poetry env remove python
+poetry install
+```
+
+**Node Dependencies:**
+```bash
+# Clear npm cache and reinstall
+cd frontend  
+rm -rf node_modules package-lock.json
+npm install
+```
+
+**Backend Import Errors:**
+```bash
+# Ensure Python path is correct
+cd backend
+export PYTHONPATH=$PWD:$PYTHONPATH
+poetry run python -m app.main
+```
+
+### Performance Optimization
+
+**Frontend Build:**
+```bash
+cd frontend
+npm run build
+npm run preview
+```
+
+**Backend Production:**
+```bash
+cd backend
+poetry run gunicorn app.main:app -w 4 -k uvicorn.workers.UvicornWorker
+```
+
+## 🎯 Next Steps
+
+1. **🔐 Security**: Set up authentication and user management
+2. **🐳 Docker**: Containerize the application for easy deployment
+3. **☁️ Cloud**: Deploy to cloud platforms (AWS, GCP, Azure)
+4. **📱 Mobile**: Create responsive mobile interface
+5. **🔌 Plugins**: Develop extensible plugin architecture
+6. **🎨 Themes**: Add customizable color schemes
+7. **👥 Multi-user**: Implement collaborative features
+8. **🔄 CI/CD**: Set up automated testing and deployment
+
+## 📚 Additional Resources
+
+- **FastAPI Documentation**: https://fastapi.tiangolo.com/
+- **React Documentation**: https://react.dev/
+- **xterm.js Guide**: https://xtermjs.org/
+- **Tailwind CSS**: https://tailwindcss.com/
+- **Poetry Documentation**: https://python-poetry.org/docs/
+
+---
+
+<div align="center">
+  <b>🧠 Neural Terminal Setup Complete - Welcome to the Matrix! 🚀</b>
+</div>
 - **Post-execution suggestions**: Smart next-step recommendations
 - **Context-aware**: Uses command history, directory, and git status
 
