@@ -24,7 +24,7 @@ export default {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         primary: {
-          DEFAULT: "hsl(var(--primary))",
+          DEFAULT: "#0df20d",
           foreground: "hsl(var(--primary-foreground))",
         },
         secondary: {
@@ -51,6 +51,14 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        "cyber-cyan": "#00f3ff",
+        "cyber-magenta": "#ff00ff",
+        "background-light": "#f5f8f5",
+        "background-dark": "#0a0a0a",
+      },
+      fontFamily: {
+        display: ["Space Grotesk", "sans-serif"],
+        mono: ["JetBrains Mono", "monospace"],
       },
       borderRadius: {
         lg: "var(--radius)",
