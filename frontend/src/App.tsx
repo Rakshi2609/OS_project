@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Toaster } from "sonner";
 import Dashboard from "./components/Dashboard";
 import LandingPage from "./components/LandingPage";
+import DocsPage from "./components/DocsPage";
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/home" element={<LandingPage />} />
+          <Route path="/docs" element={<DocsPage />} />
           <Route path="/terminal" element={
             <>
               <div className="p-4 md:p-8 bg-background-dark min-h-screen">

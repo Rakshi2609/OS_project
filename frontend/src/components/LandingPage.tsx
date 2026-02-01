@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import BinaryRain from './BinaryRain';
 
@@ -29,9 +28,9 @@ const LandingPage = () => {
               <Link className="text-white/70 hover:text-primary text-sm font-medium transition-colors" to="/terminal">
                 Terminal
               </Link>
-              <a className="text-white/70 hover:text-primary text-sm font-medium transition-colors" href="#">
+              <Link className="text-white/70 hover:text-primary text-sm font-medium transition-colors" to="/docs">
                 Docs
-              </a>
+              </Link>
             </nav>
             <div className="flex gap-2">
               <button className="flex min-w-[84px] cursor-pointer items-center justify-center rounded-lg h-10 px-4 bg-primary text-background-dark text-sm font-bold tracking-tight">
@@ -64,9 +63,11 @@ const LandingPage = () => {
                 >
                   Launch Terminal
                 </Link>
-                <button className="w-full md:w-auto flex min-w-[200px] cursor-pointer items-center justify-center rounded-lg h-14 px-8 bg-white/5 border border-white/10 text-white text-lg font-semibold hover:bg-white/10 transition-colors">
-                  View Documentation
-                </button>
+                <Link to="/docs" className="w-full md:w-auto">
+                  <button className="w-full flex min-w-[200px] cursor-pointer items-center justify-center rounded-lg h-14 px-8 bg-white/5 border border-white/10 text-white text-lg font-semibold hover:bg-white/10 transition-colors">
+                    View Documentation
+                  </button>
+                </Link>
               </div>
 
               {/* Terminal Preview */}
