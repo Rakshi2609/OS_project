@@ -1,6 +1,4 @@
 # Environment
-.env
-.env.local
 
 # Python
 __pycache__/
@@ -52,3 +50,4 @@ logs/
 frontend/dist/
 frontend/build/
 backend/dist/
+config.bat
