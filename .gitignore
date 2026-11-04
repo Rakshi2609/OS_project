@@ -49,3 +49,4 @@ logs/
 frontend/dist/
 frontend/build/
 backend/dist/
+config.bat
